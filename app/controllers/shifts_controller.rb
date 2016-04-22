@@ -1,7 +1,8 @@
 class ShiftsController < ApplicationController
-	before_action :set_shift, only: [:edit, :update, :new, :destroy]
+	before_action :set_shift, only: [:edit, :update, :show, :destroy]
 
 	def index
+		@shifts = Shift.chronological.paginate(page: params[:page]).per_page(15)  
 	end
 
 	def new

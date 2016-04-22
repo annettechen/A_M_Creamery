@@ -1,11 +1,13 @@
 class JobsController < ApplicationController
-	before_action :set_job, only: [:edit, :new, :update, :destroy]
+	before_action :set_job, only: [:edit, :show, :update, :destroy]
 
 	def index
+		@active_jobs = Job.active.alphabetical.paginate(page: params[:page]).per_page(15)  
+		@inactive_jobs = Job.inactive.alphabetical.paginate(page: params[:page]).per_page(15)  
 	end
 
 	def new
-		@job = Job.new
+		@job = Job.new 
 	end
 
 	def edit

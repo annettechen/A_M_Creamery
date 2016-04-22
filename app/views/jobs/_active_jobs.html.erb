@@ -1,0 +1,23 @@
+<% if @active_jobs.empty? %>
+  <p><em>There are no active jobs.</em></p>
+<% else %>
+  <h3>Current Jobs</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @active_jobs.each do |job| %>
+        <tr>
+          <td><%= job.name %></td>
+          <td><%= job.description %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @active_jobs, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+
+<% end %>

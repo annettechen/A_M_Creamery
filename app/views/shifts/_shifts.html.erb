@@ -1,0 +1,29 @@
+<% if @shifts.empty? %>
+  <p><em>There are no active shifts.</em></p>
+<% else %>
+  <h3>Current Jobs</h3>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Employee</th>
+        <th>Store</th>
+        <th>Date</th>
+        <th>Start Time</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @shifts.each do |shift| %>
+        <tr>
+          <td><%= shift.assignment.employee.name %></td>
+          <td><%= shift.store.name %></td>
+          <td><%= shift.date %></td>
+          <td><%= shift.start_time.to_time %></td>
+          <td><%= shift.notes %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= will_paginate @shifts, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+
+<% end %>
