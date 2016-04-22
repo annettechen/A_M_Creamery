@@ -9,6 +9,14 @@ Rails.application.routes.draw do
   get 'about' => 'home#about', as: :about
   get 'contact' => 'home#contact', as: :contact
   get 'privacy' => 'home#privacy', as: :privacy
+
+  # authentication routes
+  resources :sessions
+  resources :users
+  get 'users/new', to: 'users#new', as: :signup
+  get 'user/edit', to: 'users#edit', as: :edit_current_user
+  get 'login', to: 'sessions#new', as: :login
+  get 'logout', to: 'sessions#destroy', as: :logout
   
   # Set the root url
   root :to => 'home#home'  
