@@ -3,6 +3,9 @@ Rails.application.routes.draw do
   resources :stores
   resources :employees
   resources :assignments
+  resources :shifts
+  resources :jobs
+  resources :flavors
 
   # Semi-static page routes
   get 'home' => 'home#home', as: :home
@@ -17,6 +20,7 @@ Rails.application.routes.draw do
   get 'user/edit', to: 'users#edit', as: :edit_current_user
   get 'login', to: 'sessions#new', as: :login
   get 'logout', to: 'sessions#destroy', as: :logout
+
   
   # Set the root url
   root :to => 'home#home'  

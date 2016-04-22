@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
 	def update
 		 if @user.update_attributes(user_params)
-	      flash[:notice] = "#{@user.proper_name} is updated."
+	      flash[:notice] = "The user has been updated."
 	      redirect_to @user
 	    else
 	      render :action => 'edit'
@@ -36,8 +36,8 @@ class UsersController < ApplicationController
 
 	def destroy
 		@user.destroy
-	    flash[:notice] = "Successfully removed #{@user.proper_name} from Arbeit."
-	    redirect_to users_url
+	    flash[:notice] = "Successfully removed the user."
+	    redirect_to home_path
 	end 
 
 	private
@@ -46,10 +46,7 @@ class UsersController < ApplicationController
     end
 
     def user_params
-      if current_user && current_user.role?(:admin)
-        params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :role, :active)  
-      else
-        params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :active)
+        params.require(:user).permit(:email, :password, :password_confirmation)
       end
     end
 
