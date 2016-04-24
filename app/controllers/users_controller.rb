@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 	before_action :set_user, only: [:edit, :update, :destroy]
 
 	def index
+		@users = User.all
 	end
 
 	def show
@@ -47,7 +48,6 @@ class UsersController < ApplicationController
 
     def user_params
         params.require(:user).permit(:email, :password, :password_confirmation)
-      end
     end
 
 end

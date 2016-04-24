@@ -1,13 +1,15 @@
 
 <footer>
 
-	<%= link_to 'Home', home_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
-  <%= link_to 'About the Creamery', about_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
-	<%= link_to 'Contact Us', contact_path %>&nbsp;&nbsp;::&nbsp;&nbsp;
-	<%= link_to 'Privacy Policy', privacy_path %>
-	<br /><br />
+	<!-- <%= link_to 'Home', home_path %> &nbsp;&nbsp;::&nbsp;&nbsp;  -->
+  	<!-- <%= link_to 'About the Creamery', about_path %>&nbsp;&nbsp;::&nbsp;&nbsp; -->
+	<!-- &nbsp;&nbsp;::&nbsp;&nbsp;
+	
+	<br /><br /> -->
 	
 	<div id="copy">
+		<%= link_to 'Contact Us', contact_path %>&nbsp; ::&nbsp;
+		<%= link_to 'Privacy Policy', privacy_path %></br>
 		Webmaster: <%= mail_to("annettec@andrew.cmu.edu", "Annette Chen", encode: "javascript") %> 
 		&nbsp;&nbsp;&copy 2016
 	</div>
