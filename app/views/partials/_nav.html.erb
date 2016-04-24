@@ -4,8 +4,8 @@
       <ul class="right">
       <% if not logged_in? %>
         <%= render partial: "partials/guest_nav" %>
-      <% elsif @user.role? :employee %>
-         <%= render partial: "partials/guest_nav" %>
+      <% else %>
+        <div id="login"><%= link_to "LOGOUT", logout_path %></div>
       <% end %>
     </section>
   </nav>
