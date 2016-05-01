@@ -1,9 +1,11 @@
 class FlavorsController < ApplicationController
 	before_action :set_flavor, only: [:edit, :update, :show, :destroy]
+	authorize_resource
 
 	def index
 		@active_flavors = Flavor.active.alphabetical.paginate(page: params[:page]).per_page(15)  
 		@inactive_flavors = Flavor.inactive.alphabetical.paginate(page: params[:page]).per_page(15)
+		@active_stores = Store.active.alphabetical.paginate(page: params[:page]).per_page(5)
 	end
 
 	def new

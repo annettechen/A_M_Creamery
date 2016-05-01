@@ -1,5 +1,6 @@
 class AssignmentsController < ApplicationController
   before_action :set_assignment, only: [:edit, :update, :destroy]
+  authorize_resource
   # before_action :set_assignment, only: [:show, :edit, :update, :destroy]
 
   def index

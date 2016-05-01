@@ -12,9 +12,20 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.all
 //= require foundation.min
 //= require_tree .
 
 $(function() {
   $(document).foundation('topbar', 'reflow');
+});
+
+$(function() {
+  $(".datepicker").datepicker({
+    format: 'mm/dd/YYYY'
+  });
+});
+
+$(function() {
+    $( "#accordion" ).accordion();
 });

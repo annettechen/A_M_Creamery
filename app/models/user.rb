@@ -14,10 +14,10 @@ class User < ActiveRecord::Base
   validates_presence_of :password_confirmation, on: :create 
   validates_confirmation_of :password, message: "does not match"
   validate :employee_is_active_in_system, on: :update
-  
+
   def role?(authorized_role)
-    return false if role.nil?
-    role.downcase.to_sym = authorized_role
+    return false if self.employee.role.nil?
+    self.employee.role.downcase.to_sym == authorized_role
   end
 
   def self.authenticate(email, password)

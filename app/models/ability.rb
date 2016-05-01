@@ -10,12 +10,105 @@ class Ability
 
 		elsif user.role? :manager
 			# managers can read info on stores, jobs, and flavors
-			can :index, Store
+			can :read, Store
 
-		# elsif user.role? :employee
-		# 	can
+			can :read, Job
+
+			can :read, Flavor
+
+			can :read, Employee do |e|
+				current_store = user.employee.current_assignment.store 
+				employees_for_store = current_store.employees.map{|e| e.id}
+				employees.for_store.include? e.employee.id
+			end
+
+			can :read, Assignment do |a|
+				current_store = user.employee.current_assignment.store 
+				employees_for_store = current_store.employees.map{|e| e.id}
+				employees.for_store.include? a.employee.id
+			end
+
+			can :show, Shift do |s|
+				current_store = user.employee.current_assignment.store 
+				employees_for_store = current_store.employees.map{|e| e.id}
+				employees.for_store.include? s.employee.id
+			end
+
+			can :create, Shift do |s|
+				current_store = user.employee.current_assignment.store 
+				employees_for_store = current_store.employees.map{|e| e.id}
+				(s.store == current_store) && (employees_for_store.include? s.employee.id)
+			end
+
+			can :update, Shift do |s|
+				current_store = user.employee.current_assignment.store
+				s.store == current_store
+			end
+
+			can :destroy, Shift do |s|
+				current_store = user.employee.current_assignment.store
+				s.store == current_store
+			end
+
+			can :create, ShiftJob do |sj|
+				current_store = user.employee.current_assignment.store
+				sj.shift.store == current_store
+			end
+
+			can :destroy, ShiftJob do |sj|
+				current_store = user.employee.current_assignment.store
+				sj.shift.store == current_store
+			end
+
+			can :create, StoreFlavor do |sf|
+				current_store = user.employee.current_assignment.store
+				sf.shift.store == current_store
+			end
+
+			can :destroy, StoreFlavor do |sf|
+				current_store = user.employee.current_assignment.store
+				sf.shift.store == current_store
+			end
+
+		elsif user.role? :employee
+			can :read, Store
+
+			can :read, Job
+
+			can :read, Flavor
+
+			can :show, Employee do |e|
+				user.employee.id == e.id
+			end
+
+			can :show, User do |u|
+				u.id == user.id 
+			end
+
+			can :show, Assignment do |a|
+				a.employee.id == user.employee.id
+			end
+
+			can :show, Shift do |s|
+				s.employee.id = user.employee.id
+			end
+
+			can :show, ShiftJob do |sj|
+				sj.shift.employee.id = user.employee.id
+			end
+
+			can :update, Employee do |e|
+				user.employee.id == e.id
+			end
+
+			can :update, User do |u|
+				u.id = user.id
+			end
 
 		else 
 			can :read, Store
+		end
+
 	end
+end
 

@@ -60,7 +60,7 @@ class Employee < ActiveRecord::Base
   # Misc Constants
   ROLES_LIST = [['Employee', 'employee'],['Manager', 'manager'],['Administrator', 'admin']]
   
-  
+
   # Callback code  (NOT DRY!!!)
   # -----------------------------
   private
