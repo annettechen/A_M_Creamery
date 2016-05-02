@@ -1,6 +1,10 @@
 require 'test_helper'
 
 class EmployeeTest < ActiveSupport::TestCase
+
+  # Test user nested form
+  should accept_nested_attributes_for(:attractions).allow_destroy(true)
+
   # Test relationships
   should have_many(:assignments)
   should have_many(:stores).through(:assignments)

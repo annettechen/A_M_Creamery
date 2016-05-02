@@ -4,13 +4,8 @@
       <ul class="right">
       <% if not logged_in? %>
         <%= render partial: "partials/guest_nav" %>
-        <%= render partial: "partials/login_button"%>
       <% else %>
-        <%= render partial: "partials/guest_nav" %>
-        <%= render partial: "partials/logout_button" %>
-        
-
-
+        <%= render partial: "partials/login_nav" %>
       <% end %>
     </section>
   </nav>
