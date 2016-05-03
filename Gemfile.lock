@@ -259,6 +259,7 @@ DEPENDENCIES
   byebug
   cancancan
   capybara
+  chronic (= 0.10.2)
   coffee-rails (~> 4.1.0)
   cucumber-rails
   database_cleaner

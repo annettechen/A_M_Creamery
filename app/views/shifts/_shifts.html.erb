@@ -17,8 +17,8 @@
         <tr>
           <td><%= shift.assignment.employee.name %></td>
           <td><%= shift.store.name %></td>
-          <td><%= shift.date %></td>
-          <td><%= shift.start_time.to_time %></td>
+          <td><%= humanize_date shift.date %></td>
+          <td><%= humanize_time shift.start_time.to_time %></td>
           <td><%= shift.notes %></td>
         </tr>
       <% end %>

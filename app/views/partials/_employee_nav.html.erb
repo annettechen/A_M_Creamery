@@ -1,4 +1,3 @@
 <li><%= link_to "Home", home_path %></li>
-<li><%= link_to 'My Work', employees_path %></li>
-<li> <%= link_to "Locations", stores_path %> </li>
+<li><%= link_to 'My Work', employee_path(current_user.employee) %></li>
 <li><div id="login"><%= link_to "LOGOUT", logout_path %></div></li>

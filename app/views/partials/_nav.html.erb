@@ -5,7 +5,7 @@
       <% if not logged_in? %>
         <%= render partial: "partials/guest_nav" %>
       <% else %>
-        <%= render partial: "partials/login_nav" %>
+        <%= render partial: "partials/#{current_user.employee.role}_nav" %>
       <% end %>
     </section>
   </nav>

@@ -1,6 +1,6 @@
 <% unless @inactive_employees.empty? %>
-  <div class="panel callout radius">
-    <h3>Inactive Employees</h3>
+  <h3>Inactive Employees</h3>
+  	<div class="panel callout radius">
     <ul>
       <% @inactive_employees.each do |employee| %>
         <li><%= link_to employee.name, employee_path(employee) %></li>

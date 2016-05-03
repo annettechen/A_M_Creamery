@@ -12,9 +12,9 @@
 			</tr>
 			<% @upcoming_shifts.each do |shift| %>
 				<tr>
-					<td><%= shift.date %></td>
-					<td><%= shift.start_time %></td>
-					<td><%= shift.end_time %></td>
+					<td><%= humanize_date shift.date %></td>
+					<td><%= humanize_time shift.start_time %></td>
+					<td><%= humanize_time shift.end_time %></td>
 					<% if shift.id == @upcoming_shifts.first.id %>
 						<td>START</td>
 						<td>END</td>

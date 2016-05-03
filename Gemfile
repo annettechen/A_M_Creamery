@@ -37,6 +37,7 @@ gem 'font-awesome-sass-rails', '3.0.2.2'
 gem 'jquery-ui-rails', '4.1.1'
 gem 'geocoder', '1.3.2'
 gem 'nested_form'
+gem 'chronic', '0.10.2'
 
 
 group :development, :test do

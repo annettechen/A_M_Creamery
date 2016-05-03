@@ -10,7 +10,9 @@ class Store < ActiveRecord::Base
   has_many :shifts, through: :assignments
   has_many :store_flavors
   has_many :flavors, through: :store_flavors
-  
+
+  accepts_nested_attributes_for :flavors, reject_if: lambda { |flavor| user[:name].blank? }, allow_destroy: true
+
   # Validations
   # make sure required fields are present
   validates_presence_of :name, :street, :zip

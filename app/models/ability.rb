@@ -19,13 +19,13 @@ class Ability
 			can :read, Employee do |e|
 				current_store = user.employee.current_assignment.store 
 				employees_for_store = current_store.employees.map{|e| e.id}
-				employees.for_store.include? e.employee.id
+				employees_for_store.include? e.id
 			end
 
 			can :read, Assignment do |a|
 				current_store = user.employee.current_assignment.store 
 				employees_for_store = current_store.employees.map{|e| e.id}
-				employees.for_store.include? a.employee.id
+				employees_for_store.include? a.employee.id
 			end
 
 			can :show, Shift do |s|
@@ -107,6 +107,8 @@ class Ability
 
 		else 
 			can :read, Store
+
+			can :read, Flavor
 		end
 
 	end
