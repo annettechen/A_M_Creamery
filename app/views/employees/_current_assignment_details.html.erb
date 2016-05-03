@@ -1,0 +1,29 @@
+<div id="more_info">
+	<% unless @employee.current_assignment.nil? %>
+		<%= "Currently Assigned To: #{@employee.current_assignment.store.name.upcase}" %>
+		<h4>Upcoming Shifts</h4>
+		<table>
+			<tr>
+				<th>Date</th>
+				<th>Start Time</th>
+				<th>End Time</th>
+				<th>&nbsp;</th>
+				<th>&nbsp;</th>
+			</tr>
+			<% @upcoming_shifts.each do |shift| %>
+				<tr>
+					<td><%= shift.date %></td>
+					<td><%= shift.start_time %></td>
+					<td><%= shift.end_time %></td>
+					<% if shift.id == @upcoming_shifts.first.id %>
+						<td>START</td>
+						<td>END</td>
+					<% else %>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					<% end %>
+				</tr>
+			<% end %>
+		</table>
+	<% end %>
+</div>

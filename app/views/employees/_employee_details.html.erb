@@ -6,15 +6,17 @@
 </p>
 
 <p>
-  <b>SSN:</b> <%= @employee.ssn %>
-</p>
-
-<p>
   <b>Date of Birth:</b> <%= @employee.date_of_birth.strftime("%m/%d/%y") %>
 </p>
 
 <p>
   <b>Phone:</b> <%= number_to_phone @employee.phone unless @employee.phone.nil? %>
+</p>
+
+<p>
+	<% unless @employee.user.nil? %>
+	<b>Email:</b> <%= @employee.user.email %>
+	<% end %>
 </p>
 
 <p>
