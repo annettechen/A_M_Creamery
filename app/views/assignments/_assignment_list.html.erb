@@ -5,7 +5,6 @@
   <table class="table table-striped">
     <thead>
       <tr>
-        <th>ID</th>
         <th>Store</th>
         <th>Employee</th>
         <th class="centered">Pay</th>
@@ -14,13 +13,13 @@
           <th>End Date</th>
         <% end %>
         <th>&nbsp;</th>
+        <th>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
       <% assignments.each do |assignment| %>
         <% if can? :read, assignment %> 
         <tr>
-          <td><%= assignment.id %></td>
           <td><%= link_to assignment.store.name, store_path(assignment.store) %></td>
           <td><%= link_to assignment.employee.name, employee_path(assignment.employee) %></td>
           <td class="centered"><%= assignment.pay_level %></td>
@@ -29,10 +28,15 @@
             <td><%= assignment.end_date.strftime("%m/%d/%y") %></td>
           <% end %>
           <td>
-            <%= link_to(edit_assignment_path(assignment), class: 'button tiny radius warning') do %>
-              &nbsp;Edit&nbsp;
+            <% if can? :update, assignment %>
+              <%= link_to(edit_assignment_path(assignment), class: 'button tiny radius warning') do %>
+                &nbsp;Edit&nbsp;
+              <% end %>
+            <% else %>
+            &nbsp;
             <% end %>
           </td>
+          <td><%= link_to "show more", assignment_path(assignment), class: 'button tiny radius'%></td>
         </tr>
         <% end %>
       <% end %>

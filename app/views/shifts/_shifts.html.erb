@@ -9,6 +9,7 @@
         <th>Store</th>
         <th>Date</th>
         <th>Start Time</th>
+        <th>&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -19,6 +20,7 @@
           <td><%= shift.store.name %></td>
           <td><%= humanize_date shift.date %></td>
           <td><%= humanize_time shift.start_time.to_time %></td>
+          <td><%= link_to "edit", edit_shift_path(shift), class: 'button small' %></td>
         </tr>
         <% end %>
       <% end %>

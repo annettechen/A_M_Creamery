@@ -19,5 +19,7 @@
 	  <% end %>
 	</table>
 	<%= will_paginate @current_assignments, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
-	<%= link_to "Add a New Assignment", new_assignment_path, class: 'button' %>
+	<% if logged_in? and current_user.role?(:manager) %>
+		<%= link_to "Add a New Assignment", new_assignment_path, class: 'button' %>
+	<% end %>
 <% end %>

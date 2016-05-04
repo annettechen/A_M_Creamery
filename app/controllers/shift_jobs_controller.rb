@@ -28,7 +28,7 @@ class ShiftJobsController < ApplicationController
 
 	def update
 		if @shift_job.update(shift_job_params)
-			# redirect_to shift_jobs_path, notice: "#{@job.name} updated in the system"
+		    redirect_to shift_jobs_path, notice: "#{@job.name} updated in the system"
 		else
 			render action: 'edit'
 		end

@@ -26,15 +26,20 @@ class ShiftsController < ApplicationController
 
 	def show
 		@jobs = @shift.jobs.paginate(page: params[:page]).per_page(5)
+		@shift_history = @shift.assignment.shifts.past.paginate(page: params[:page]).per_page(5)
 	end
 
 	def create
 		@shift = Shift.new(shift_params)
-
-		if @shift.save
-			redirect_to shifts_path, notice: "Shift for #{@shift.employee.name} added to the system"
-		else
-			render action: 'new'
+		
+		respond_to do |format|
+			if @shift.save
+				format.html {redirect_to shifts_path, notice: "Shift for #{@shift.employee.name} added to the system"}
+				format.js
+			else
+				format.html {render action: 'new'}
+				format.js
+			end
 		end
 	end
 
@@ -56,7 +61,6 @@ class ShiftsController < ApplicationController
 		@shift.save
 		respond_to do |format| 
 			format.js
-
 		end
 	end
 

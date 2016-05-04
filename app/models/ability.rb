@@ -44,6 +44,7 @@ class Ability
 				current_store = user.employee.current_assignment.store
 				s.store == current_store
 			end
+			
 			can :update, Store do |s|
 				current_store = user.employee.current_assignment.store
 				s == current_store

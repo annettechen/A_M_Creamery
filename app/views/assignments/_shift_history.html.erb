@@ -1,1 +1,15 @@
-<!-- <p>Forthcoming...</p> -->
+<% unless @shift_history.nil? %>
+	<h3>Shift History </h3>
+	<table class="table table-striped">
+		<tr>
+			<th>Employee</th>
+			<th>Date</th>
+		</tr>
+		<% @shift.history.each do |shift| %>
+			<tr>
+				<td><%=shift.employee.name%></td>
+				<td><%= humanize shift.date%></td>
+			</tr>
+		<% end %>
+	</table>
+<%end %>

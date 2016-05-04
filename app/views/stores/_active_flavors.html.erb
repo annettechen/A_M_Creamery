@@ -1,9 +1,6 @@
 <% if not @flavors.empty? %>
 	<h4>Flavors at this Store</h4>
 	<table class="table table-striped">
-		<tr>
-			<th>Flavors</th>
-		</tr>
 		<% @flavors.each do |flavor| %>
 		<tr>
 			<td><%= flavor.name %></td>
@@ -12,4 +9,8 @@
 	</table>
 <% else %>
 	<h6> This Store currently has no flavors! </h6>
+<% end %>
+
+<% if logged_in? and current_user.role?(:manager) %>
+	<%= link_to "Add Flavor", edit_store_path(@store), class: 'button' %>
 <% end %>
