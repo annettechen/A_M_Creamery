@@ -10,6 +10,7 @@ class StoresController < ApplicationController
   def show
     @current_assignments = @store.assignments.current.by_employee.paginate(page: params[:page]).per_page(5)
     @flavors = @store.flavors.alphabetical
+    @store.get_store_coordinates
   end
 
   def new
