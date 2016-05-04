@@ -1,0 +1,25 @@
+<% unless @stores.empty? %>
+	<h4> Active A & M Stores </h4>
+	<table class="table table-striped">
+		<tr>
+			<th>Store Name</th>
+			<th>City</th>
+			<th>&nbsp;</th>
+			<th>&nbsp;</th>
+		</tr>
+		<% @stores.each do |store| %>
+			<tr>
+				<td><%= link_to store.name, store_path(store) %></td>
+				<td><%= store.city %></td>
+				<td><%= link_to "edit", edit_store_path(store)%></td>
+				<td><%= link_to "delete", method: 'delete'  %></td>
+			</tr>
+		<%end%>
+	</table>
+
+	<%= link_to "Add a New Store", new_store_path, class: 'button' %>
+<%end%>
+
+
+
+	

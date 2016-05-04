@@ -1,6 +1,9 @@
 <div class="contain-to-grid">
   <nav class="top-bar" data-topbar role="navigation"> 
     <section class="top-bar-section">
+      <ul class="left"> 
+        <li><%= link_to "A & M Creamery", home_path %></li>
+      </ul>
       <ul class="right">
       <% if not logged_in? %>
         <%= render partial: "partials/guest_nav" %>

@@ -1,0 +1,14 @@
+<% if not @flavors.empty? %>
+	<table>
+		<tr>
+			<th>Flavors</th>
+		</tr>
+		<% @flavors.each do |flavor| %>
+		<tr>
+			<td><%= flavor.name %></td>
+		</tr>
+		<% end %>
+	</table>
+<% else %>
+	<h6> This Store currently has no flavors! </h6>
+<% end %>

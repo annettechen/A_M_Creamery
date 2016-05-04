@@ -1,29 +1,23 @@
 <div id="more_info">
 	<% unless @employee.current_assignment.nil? %>
-		<%= "Currently Assigned To: #{@employee.current_assignment.store.name.upcase}" %>
-		<h4>Upcoming Shifts</h4>
+		<%= "Currently Assigned To: #{@employee.current_assignment.store.name.upcase}" %><br><br>
+		<h5>Upcoming Shifts</h5>
 		<table>
 			<tr>
 				<th>Date</th>
 				<th>Start Time</th>
 				<th>End Time</th>
-				<th>&nbsp;</th>
-				<th>&nbsp;</th>
 			</tr>
 			<% @upcoming_shifts.each do |shift| %>
 				<tr>
 					<td><%= humanize_date shift.date %></td>
 					<td><%= humanize_time shift.start_time %></td>
 					<td><%= humanize_time shift.end_time %></td>
-					<% if shift.id == @upcoming_shifts.first.id %>
-						<td>START</td>
-						<td>END</td>
-					<% else %>
-						<td>&nbsp;</td>
-						<td>&nbsp;</td>
-					<% end %>
 				</tr>
 			<% end %>
 		</table>
+		<% if logged_in? and current_user.role?(:admin) %>
+			<%= link_to "Add a New Shift", new_shift_path, class: 'button small radius' %>
+		<% end %>
 	<% end %>
 </div>

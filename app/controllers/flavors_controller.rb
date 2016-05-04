@@ -12,6 +12,13 @@ class FlavorsController < ApplicationController
 		@flavor = Flavor.new
 	end
 
+	def show
+		if current_user.role?(:manager)
+			@manager_store = current_user.employee.current_assignment.store
+			@flavors_for_store = @manager_store.flavorss
+		end
+	end	
+
 	def edit
 	end
 

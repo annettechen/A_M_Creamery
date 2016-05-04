@@ -1,0 +1,9 @@
+<div class="side-nav">
+<% unless @stores.empty? %>
+	<% @stores.each do |store| %>
+		<ul><%= link_to store.name, store_path(store) %></ul>
+	<% end %>
+<% else %>
+	<h3> There are currently no stores! </h3>
+<%end %>
+</div>

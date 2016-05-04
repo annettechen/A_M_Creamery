@@ -1,16 +1,14 @@
-<h3>Current Employees</h3>
+<h4>Current Employees</h4>
 <table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
-      <th class="centered">Pay Level</th>
     </tr>
   </thead>
   <tbody>
     <% @current_assignments.each do |assignment| %>
       <tr>
         <td><%= link_to assignment.employee.name, employee_path(assignment.employee) %></td>
-        <td class="centered"><%= assignment.pay_level %></td>
       </tr>
     <% end %>
   </tbody>

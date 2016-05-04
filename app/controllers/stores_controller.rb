@@ -8,13 +8,12 @@ class StoresController < ApplicationController
   end
 
   def show
-    @current_assignments = @store.assignments.current.by_employee.paginate(page: params[:page]).per_page(8)
+    @current_assignments = @store.assignments.current.by_employee.paginate(page: params[:page]).per_page(5)
     @flavors = @store.flavors.alphabetical
   end
 
   def new
     @store = Store.new
-    @store.flavors.build
   end
 
   def edit
@@ -49,7 +48,7 @@ class StoresController < ApplicationController
   end
 
   def store_params
-    params.require(:store).permit(:name, :street, :city, :state, :zip, :phone, :active, flavors_attributes: [:name, :active])
+    params.require(:store).permit(:name, :street, :city, :state, :zip, :phone, :active,  :flavor_ids => [])
   end
 
 end

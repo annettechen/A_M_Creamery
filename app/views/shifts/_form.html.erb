@@ -2,10 +2,21 @@
   <fieldset>
     <legend><%= controller.action_name.capitalize %> Shift </legend>
 
-    <%= f.input :assignment_id, input_html: {class: "avg"} %>
+      <% if current_user.employee.role == "manager"%>
+      <%= f.input :assignment_id, :collection => Assignment.current.for_store(current_user.employee.current_assignment.store).map{|a| ["#{a.employee.proper_name} : #{a.store.name}", a.id]}, input_html: {class: "avg"} %>
+      <% else %>
+      <%= f.select :assignment_id, Assignment.current.by_employee.map{|a| ["#{a.employee.proper_name} : #{a.store.name}", a.id]}, input_html: {class: "avg"} %>
+    <% end %> 
+
     <%= f.input :date, :as => :string, :input_html => {:class => "avg datepicker"} %>
     <%= f.input :start_time, input_html: {class: "avg"} %>
-    <%= f.input :notes, input_html: {class: "avg"} %>
+    <% if controller.action_name == "edit" %>
+      <%= f.input :notes, input_html: {class: "avg"} %>
+    <fieldset>
+      <legend>Add Jobs</legend>
+      <%= render partial: 'job_checkboxes' %>
+    </fieldset>
+    <% end %>
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'button radius' %>

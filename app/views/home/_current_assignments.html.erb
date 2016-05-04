@@ -1,0 +1,23 @@
+<% unless @current_assignments.empty? %>
+	<h4> Current Assignments </h4>
+	<table>
+	  <tr>
+		<th>Employee</th>
+		<th>Store</th>
+		<th>Start Date</th>
+		<th>&nbsp;</th>
+		<th>&nbsp;</th>
+	  </tr>
+	  <% @current_assignments.each do |assignment| %>
+	  	<tr>
+	  		<td><%=link_to assignment.employee.proper_name, assignment_path(assignment)%></td>
+	  		<td><%= assignment.store.name %></td>
+	  		<td><%= humanize_date assignment.start_date %></td>
+	  		<td><%= link_to "edit", edit_assignment_path(assignment)%></td>
+				<td><%= link_to "delete", method: 'delete'  %></td>
+	  	</tr>
+	  <% end %>
+	</table>
+	<%= will_paginate @current_assignments, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+	<%= link_to "Add a New Assignment", new_assignment_path, class: 'button' %>
+<% end %>

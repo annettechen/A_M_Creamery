@@ -7,6 +7,7 @@
       <tr>
         <th>Name</th>
         <th>Phone</th>
+        <th>Email (if applicable)</th>
         <th>Currently Assigned</th>
         <th>Role</th>
         <th>&nbsp;</th>
@@ -14,9 +15,15 @@
     </thead>
     <tbody>
       <% @active_employees.each do |employee| %>
+        <% if can? :read, employee %>
         <tr>
           <td><%= link_to employee.name, employee_path(employee) %></td>
           <td><%= number_to_phone employee.phone unless employee.phone.nil?  %></td>
+          <% if not employee.user.nil? %>
+            <td><%= employee.user.email %></td>
+          <% else %>
+            <td>&nbsp;</td>
+          <% end %>
           <td><%= link_to employee.current_assignment.store.name, store_path(employee.current_assignment.store) unless employee.current_assignment.nil? %></td>
           <td><%= employee.role.capitalize %></td>
           <td>
@@ -25,6 +32,7 @@
             <% end %>
           </td>
         </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>

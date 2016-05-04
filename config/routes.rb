@@ -21,6 +21,8 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new', as: :login
   get 'logout', to: 'sessions#destroy', as: :logout
 
+  post 'start_now/:id' => 'shifts#start_now', as: :start_now
+  post 'end_now/:id' => 'shifts#end_now', as: :end_now
   
   # Set the root url
   root :to => 'home#home'  

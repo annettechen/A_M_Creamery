@@ -1,0 +1,77 @@
+<div class="row">
+	<div class="small-7 columns">
+		<h3><%= "MY STORE: #{current_user.employee.current_assignment.store.name.capitalize}" %></h3><br>
+		<h3><%= "Who's Working Today (#{humanize_date Date.today})" %></h3>
+		<% if @today_shifts.nil? %>
+			<p> There are no shifts for today! </p>
+		<% else %>
+			<table>
+				<tr>
+					<th>Employee</th>
+					<th>Phone Number</th>
+					<th>Start Time</th>
+					<th>&nbsp;</th>
+				</tr>
+				<% @today_shifts.each do |shift| %>
+					<tr>
+						<td><%= link_to shift.employee.name, employee_path(shift.employee) %></td>
+						<td><%= number_to_phone shift.employee.phone %></td>
+						<td><%= humanize_time shift.start_time %></td>
+						<td><%= link_to(shift_path(shift), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{shift.employee.proper_name}'s shift?"}, class: 'button tiny') do %>
+						<%= "X" %>
+						<% end %></td>
+					</tr>
+				<% end %>
+			</table>
+		<% end %>
+	</div>
+	<div class="small-5 columns">
+	<% if not @future_shifts.empty? %>
+		<h5>Upcoming Shifts</h5>
+		<table>
+			<tr>
+				<th>Employee Name</th>
+				<th>Date</th>
+				<th>Start Time</th>
+				
+			</tr>
+			<% @future_shifts.each do |shift| %>
+			<% unless shift.date == Date.today %>
+				<tr>
+					<td><%= shift.employee.name %></td>
+					<td><%= humanize_date shift.date %></td>
+					<td><%= humanize_time shift.start_time %></td>
+					
+				</tr>
+			<% end %>
+			<% end %>
+		</table>
+	<% else %>
+		<h5>There are no shifts after today!</h5>
+	<% end %>
+	<% if not @incomplete_shifts.empty? %>
+		<h5>Incomplete Shifts</h5>
+		<table>
+			<tr>
+				<th>Employee Name</th>
+				<th>Date</th>
+				<th>Start Time</th>
+				<th>&nbsp;</th>
+			</tr>
+			<% @incomplete_shifts.each do |shift| %>
+				<% if can? :read, shift %>
+				<tr>
+					<td><%= link_to shift.employee.name, shift_path(shift) %></td>
+					<td><%= humanize_date shift.date %></td>
+					<td><%= humanize_time shift.start_time %></td>
+					<td><%= link_to "add jobs", edit_shift_path(shift), class: 'button tiny' %></td>
+				</tr>
+				<% end %>
+			<% end %>
+		</table>
+		<%= will_paginate @incomplete_shifts, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+	<% else %>
+		<h5>There are no incomplete shifts!</h5>
+	<% end %>
+	</div>
+</div>

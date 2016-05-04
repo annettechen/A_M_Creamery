@@ -1,0 +1,25 @@
+<% if @upcoming_shifts.empty? %>
+	<p> there are no upcoming shifts <p>
+<% else %> 
+	<h5><%= "Upcoming Shifts for #{@employee.proper_name}" %></h5>
+	<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Store</th>
+        <th>Date</th>
+        <th>Start Time</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @upcoming_shifts.each do |shift| %>
+        <% if can? :read, shift %>
+        <tr>
+          <td><%= shift.store.name %></td>
+          <td><%= humanize_date shift.date %></td>
+          <td><%= humanize_time shift.start_time.to_time %></td>
+        </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>

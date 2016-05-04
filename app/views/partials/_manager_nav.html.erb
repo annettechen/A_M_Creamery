@@ -1,6 +1,10 @@
 <li><%= link_to "Home", home_path %></li>
-<li><%= link_to "Stores", stores_path %></li>
 <li><%= link_to "Employees", employees_path %></li>
-<li><%= link_to "Upcoming Shifts", shifts_path %></li>
-<li><%= link_to "My Info", employee_path(current_user.employee) %></li>
-<li><div id="login"><%= link_to "LOGOUT", logout_path %></div></li>
+<li><%= link_to "Stores", stores_path %></li>
+
+<li class="has-dropdown">
+  <%= link_to "#{current_user.employee.name}", employee_path(current_user.employee)%>
+  <ul class="dropdown">
+    <li><%= link_to "LOGOUT", logout_path %></li>
+  </ul>
+</li>

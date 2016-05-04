@@ -1,5 +1,30 @@
-<li><%= link_to "Home", home_path %></li>
-<li><%= link_to "Stores", stores_path %></li>
-<li><%= link_to "Employees", employees_path %></li>
-<li><%= link_to "Upcoming Shifts", shifts_path %></li>
-<li><div id="login"><%= link_to "LOGOUT", logout_path %></div></li>
+<li class="has-dropdown">
+  <%= link_to "Stores", stores_path %>
+  <ul class="dropdown">
+    <li><%= link_to "Store List", stores_path %></li>
+    <li><%= link_to "Add a Store", new_store_path %></li>
+  </ul>
+</li>
+
+<li class="has-dropdown">
+  <%= link_to "Employees", employees_path %>
+  <ul class="dropdown">
+    <li><%= link_to "Employee List", employees_path %></li>
+    <li><%= link_to "Add an Employee", new_employee_path %></li>
+  </ul>
+</li>
+
+<li class="has-dropdown">
+  <%= link_to "Assignments", assignments_path %>
+  <ul class="dropdown">
+    <li><%= link_to "Assignments List", assignments_path %></li>
+    <li><%= link_to "Create New Assignment", new_assignment_path %></li>
+  </ul>
+</li>
+
+<li class="has-dropdown">
+  <%= link_to "#{current_user.employee.name}", employee_path(current_user.employee)%>
+  <ul class="dropdown">
+    <li><%= link_to "LOGOUT", logout_path %></li>
+  </ul>
+</li>

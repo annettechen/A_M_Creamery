@@ -5,6 +5,7 @@
   <table class="table table-striped">
     <thead>
       <tr>
+        <th>ID</th>
         <th>Store</th>
         <th>Employee</th>
         <th class="centered">Pay</th>
@@ -17,7 +18,9 @@
     </thead>
     <tbody>
       <% assignments.each do |assignment| %>
+        <% if can? :read, assignment %> 
         <tr>
+          <td><%= assignment.id %></td>
           <td><%= link_to assignment.store.name, store_path(assignment.store) %></td>
           <td><%= link_to assignment.employee.name, employee_path(assignment.employee) %></td>
           <td class="centered"><%= assignment.pay_level %></td>
@@ -31,6 +34,7 @@
             <% end %>
           </td>
         </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>

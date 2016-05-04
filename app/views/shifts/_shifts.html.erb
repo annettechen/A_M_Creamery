@@ -1,7 +1,7 @@
 <% if @shifts.empty? %>
   <p><em>There are no active shifts.</em></p>
 <% else %>
-  <h3>Current Jobs</h3>
+  <h3>Current Shifts</h3>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -9,21 +9,21 @@
         <th>Store</th>
         <th>Date</th>
         <th>Start Time</th>
-        <th>Notes</th>
       </tr>
     </thead>
     <tbody>
-      <% @shifts.each do |shift| %>
+      <% @upcoming_shifts.each do |shift| %>
+        <% if can? :read, shift %>
         <tr>
-          <td><%= shift.assignment.employee.name %></td>
+          <td><%= link_to shift.assignment.employee.name, employee_path(shift.assignment.employee) %></td>
           <td><%= shift.store.name %></td>
           <td><%= humanize_date shift.date %></td>
           <td><%= humanize_time shift.start_time.to_time %></td>
-          <td><%= shift.notes %></td>
         </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>
-  <%= will_paginate @shifts, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+  <%= will_paginate @upcoming_shifts, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
 
 <% end %>

@@ -1,2 +1,5 @@
-.	<%= render :partial => 'general_home' %>
-
+<% if not logged_in? %>
+<%= render :partial => 'general_home' %>
+<% else %>
+<%= render :partial => "#{current_user.employee.role}_home" %>
+<% end %>

@@ -28,10 +28,10 @@ class Ability
 				employees_for_store.include? a.employee.id
 			end
 
-			can :show, Shift do |s|
+			can :read, Shift do |s|
 				current_store = user.employee.current_assignment.store 
 				employees_for_store = current_store.employees.map{|e| e.id}
-				employees.for_store.include? s.employee.id
+				employees_for_store.include? s.employee.id
 			end
 
 			can :create, Shift do |s|
@@ -43,6 +43,10 @@ class Ability
 			can :update, Shift do |s|
 				current_store = user.employee.current_assignment.store
 				s.store == current_store
+			end
+			can :update, Store do |s|
+				current_store = user.employee.current_assignment.store
+				s == current_store
 			end
 
 			can :destroy, Shift do |s|
@@ -90,6 +94,14 @@ class Ability
 			end
 
 			can :show, Shift do |s|
+				s.employee.id = user.employee.id
+			end
+
+			can :start_now, Shift do |s|
+				s.employee.id = user.employee.id
+			end
+
+			can :end_now, Shift do |s|
 				s.employee.id = user.employee.id
 			end
 

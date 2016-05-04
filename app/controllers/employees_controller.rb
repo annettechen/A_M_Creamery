@@ -12,6 +12,7 @@ class EmployeesController < ApplicationController
     @assignments = @employee.assignments.chronological.paginate(page: params[:page]).per_page(5)
     # get upcoming shifts for this employee (later)  
     @upcoming_shifts = @employee.shifts.upcoming.paginate(page: params[:page]).per_page(5)
+    
   end
 
   def new

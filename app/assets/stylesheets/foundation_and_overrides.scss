@@ -312,7 +312,7 @@
 // $include-html-button-classes: $include-html-classes;
 
 // We use these to build padding for buttons.
-// $button-tny: rem-calc(10);
+// $button-tny: rem-calc(5);
 // $button-sml: rem-calc(14);
 // $button-med: rem-calc(16);
 // $button-lrg: rem-calc(18);
@@ -1246,18 +1246,18 @@ $topbar-bg: #FFD1B6;
   padding-top: 0px;
   padding-bottom: 15px;
   background-color: transparent;
-  color: #229944;
+  color: #000;
   text-align: center;
 }
 
 #footer a {
-  color: #339999;
+  color: #000;
   opacity: 1.0;
   text-decoration: none;
 }
 
 #footer a:hover {
-  color: #339999;
+  color: #444;
   text-decoration: underline;
 }
 
@@ -1320,7 +1320,7 @@ select.date { width: 90px; }
 select.time { width: 90px; }
 
 .form-actions {
-  background-color: #FFF;
+  background-color: transparent;
 }
 
 .form-actions-min {
@@ -1343,4 +1343,14 @@ label {
 
 .top-bar {
 	background-color: #FFD1B6;
+	opacity: .60;
+}
+
+.top-bar.right{
+	background-color: #FFD1B6;
+	opacity: .60;
+}
+
+#main_content {
+	padding-top: 7%;
 }

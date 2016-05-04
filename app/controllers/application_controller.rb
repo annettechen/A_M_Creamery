@@ -4,6 +4,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include DateFormatter
 
+
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = "You are not authorized to take this action.  Go away or I shall taunt you a second time."
+    redirect_to :back
+  end
+
   private
   # Handling authentication
   def current_user

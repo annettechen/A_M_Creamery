@@ -1,0 +1,9 @@
+<% if not @jobs.empty? %>
+	<% @jobs.each do |job| %>
+		<% if can? :show, job %>
+			<ul><%= job.name %></ul>
+		<% end %>
+	<% end %>
+<% else %>
+	<p> There are no recorded jobs for this shift!</p>
+<% end %>
